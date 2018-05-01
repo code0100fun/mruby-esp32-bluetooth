@@ -266,31 +266,31 @@ static mrb_value mrb_esp32_bt_controller_config_init(mrb_state *mrb, mrb_value s
 }
 
 void mrb_esp32_bluetooth_gem_init(mrb_state* mrb) {
-  struct RClass *mrb_esp32, *mrb_esp32_bt, *mrb_esp32_ble, *mrb_esp32_bredr, *mrb_esp32_bt_controller, *mrb_esp32_vhci_host, *mrb_esp32_bt_controller_config;
-
   mrb_esp32_bluetooth_mrb = mrb;
   notify_host_send_available_block = mrb_nil_value();
   notify_host_recv_block = mrb_nil_value();
   esp_vhci_host_register_callback(&mrb_esp32_vhci_host_callback);
 
-  mrb_esp32 = mrb_define_module(mrb, "ESP32");
+  struct RClass *mrb_esp32 = mrb_define_module(mrb, "ESP32");
+
+  // esp_bt.h
 
   /*
    * ESP-IDF Bluetooth API wrapper.
    *
    * c.f. {http://esp-idf.readthedocs.io/en/latest/api-reference/bluetooth/index.html Bluetooth API documentation}
    */
-  mrb_esp32_bt = mrb_define_class_under(mrb, mrb_esp32, "BT", mrb->object_class);
+  struct RClass *mrb_esp32_bt = mrb_define_class_under(mrb, mrb_esp32, "BT", mrb->object_class);
 
-  mrb_esp32_ble = mrb_define_class_under(mrb, mrb_esp32, "BLE", mrb->object_class);
+  struct RClass *mrb_esp32_ble = mrb_define_class_under(mrb, mrb_esp32, "BLE", mrb->object_class);
   mrb_define_class_method(mrb, mrb_esp32_ble, "tx_power_set", mrb_esp32_ble_s_tx_power_set, MRB_ARGS_REQ(2));
   mrb_define_class_method(mrb, mrb_esp32_ble, "tx_power_get", mrb_esp32_ble_s_tx_power_get, MRB_ARGS_REQ(1));
 
-  mrb_esp32_bredr = mrb_define_class_under(mrb, mrb_esp32, "BREDR", mrb->object_class);
+  struct RClass *mrb_esp32_bredr = mrb_define_class_under(mrb, mrb_esp32, "BREDR", mrb->object_class);
   mrb_define_class_method(mrb, mrb_esp32_bredr, "tx_power_set", mrb_esp32_bredr_s_tx_power_set, MRB_ARGS_REQ(2));
   mrb_define_class_method(mrb, mrb_esp32_bredr, "tx_power_get", mrb_esp32_bredr_s_tx_power_get, MRB_ARGS_NONE());
 
-  mrb_esp32_bt_controller = mrb_define_class_under(mrb, mrb_esp32_bt, "Controller", mrb->object_class);
+  struct RClass *mrb_esp32_bt_controller = mrb_define_class_under(mrb, mrb_esp32_bt, "Controller", mrb->object_class);
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "init", mrb_esp32_bt_controller_s_init, MRB_ARGS_OPT(1));
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "deinit", mrb_esp32_bt_controller_s_deinit, MRB_ARGS_NONE());
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "enable", mrb_esp32_bt_controller_s_enable, MRB_ARGS_REQ(1));
@@ -298,13 +298,13 @@ void mrb_esp32_bluetooth_gem_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "get_status", mrb_esp32_bt_controller_s_get_status, MRB_ARGS_NONE());
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "enable", mrb_esp32_bt_controller_s_mem_release, MRB_ARGS_REQ(1));
 
-  mrb_esp32_vhci_host = mrb_define_class_under(mrb, mrb_esp32, "VHCIHost", mrb->object_class);
+  struct RClass *mrb_esp32_vhci_host = mrb_define_class_under(mrb, mrb_esp32, "VHCIHost", mrb->object_class);
   mrb_define_class_method(mrb, mrb_esp32_vhci_host, "check_send_available", mrb_esp32_vhci_host_s_check_send_available, MRB_ARGS_NONE());
   mrb_define_class_method(mrb, mrb_esp32_vhci_host, "send_packet", mrb_esp32_vhci_host_s_send_packet, MRB_ARGS_REQ(1));
   mrb_define_class_method(mrb, mrb_esp32_vhci_host, "notify_host_send_available", mrb_esp32_vhci_host_s_notify_host_send_available, MRB_ARGS_BLOCK());
   mrb_define_class_method(mrb, mrb_esp32_vhci_host, "notify_host_recv_block", mrb_esp32_vhci_host_s_notify_host_recv_block, MRB_ARGS_BLOCK());
 
-  mrb_esp32_bt_controller_config = mrb_define_class_under(mrb, mrb_esp32_bt, "ControllerConfig", mrb->object_class);
+  struct RClass *mrb_esp32_bt_controller_config = mrb_define_class_under(mrb, mrb_esp32_bt, "ControllerConfig", mrb->object_class);
   mrb_define_method(mrb, mrb_esp32_bt_controller_config, "initialize", mrb_esp32_bt_controller_config_init, MRB_ARGS_REQ(4));
 
   /* esp_bt_mode_t */
