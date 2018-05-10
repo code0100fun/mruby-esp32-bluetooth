@@ -422,7 +422,7 @@ void mrb_esp32_bluetooth_gem_init(mrb_state* mrb) {
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "enable", mrb_esp32_bt_controller_s_enable, MRB_ARGS_REQ(1));
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "disable", mrb_esp32_bt_controller_s_disable, MRB_ARGS_NONE());
   mrb_define_class_method(mrb, mrb_esp32_bt_controller, "get_status", mrb_esp32_bt_controller_s_get_status, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, mrb_esp32_bt_controller, "enable", mrb_esp32_bt_controller_s_mem_release, MRB_ARGS_REQ(1));
+  mrb_define_class_method(mrb, mrb_esp32_bt_controller, "mem_release", mrb_esp32_bt_controller_s_mem_release, MRB_ARGS_REQ(1));
 
   struct RClass *mrb_esp32_vhci_host = mrb_define_class_under(mrb, mrb_esp32, "VHCIHost", mrb->object_class);
   mrb_define_class_method(mrb, mrb_esp32_vhci_host, "check_send_available", mrb_esp32_vhci_host_s_check_send_available, MRB_ARGS_NONE());
