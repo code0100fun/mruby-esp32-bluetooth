@@ -1,5 +1,4 @@
 #include <esp_bt.h>
-#include <esp_bt_main.h>
 #include <esp_gap_ble_api.h>
 #include <freertos/FreeRTOS.h>
 #include <mruby.h>
@@ -8,6 +7,8 @@
 #include <mruby/variable.h>
 #include <mruby/value.h>
 #include <mruby-esp32-ext_esp_err.h>
+
+void mrb_esp_bt_main_init(mrb_state *mrb, struct RClass *mrb_esp32_bluedroid);
 
 static mrb_state *mrb_esp32_bluetooth_mrb;
 static mrb_value notify_host_send_available_block;
@@ -392,43 +393,6 @@ static mrb_value mrb_esp32_gap_s_register_callback(mrb_state *mrb, mrb_value sel
   return mrb_nil_value();
 }
 
-// esp_bt_main.h
-static mrb_value mrb_esp32_bluedroid_get_status(mrb_state *mrb, mrb_value self) {
-  return mrb_fixnum_value((mrb_int)esp_bluedroid_get_status());
-}
-
-static mrb_value  mrb_esp32_bluedroid_enable(mrb_state *mrb, mrb_value self) {
-  esp_err_t err = esp_bluedroid_enable();
-  if (err != ESP_OK) {
-    mrb_raise_esp32_err(mrb, err);
-  }
-  return mrb_nil_value();
-}
-
-static mrb_value  mrb_esp32_bluedroid_disable(mrb_state *mrb, mrb_value self) {
-  esp_err_t err = esp_bluedroid_disable();
-  if (err != ESP_OK) {
-    mrb_raise_esp32_err(mrb, err);
-  }
-  return mrb_nil_value();
-}
-
-static mrb_value  mrb_esp32_bluedroid_init(mrb_state *mrb, mrb_value self) {
-  esp_err_t err = esp_bluedroid_init();
-  if (err != ESP_OK) {
-    mrb_raise_esp32_err(mrb, err);
-  }
-  return mrb_nil_value();
-}
-
-static mrb_value  mrb_esp32_bluedroid_deinit(mrb_state *mrb, mrb_value self) {
-  esp_err_t err = esp_bluedroid_deinit();
-  if (err != ESP_OK) {
-    mrb_raise_esp32_err(mrb, err);
-  }
-  return mrb_nil_value();
-}
-
 void mrb_esp32_bluetooth_gem_init(mrb_state* mrb) {
   mrb_esp32_bluetooth_mrb = mrb;
   notify_host_send_available_block = mrb_nil_value();
@@ -439,16 +403,7 @@ void mrb_esp32_bluetooth_gem_init(mrb_state* mrb) {
 
   // esp_bt_main.h
   struct RClass *mrb_esp32_bluedroid = mrb_define_class_under(mrb, mrb_esp32, "Bluedroid", mrb->object_class);
-  mrb_define_class_method(mrb, mrb_esp32_bluedroid, "get_status", mrb_esp32_bluedroid_get_status, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, mrb_esp32_bluedroid, "enable", mrb_esp32_bluedroid_enable, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, mrb_esp32_bluedroid, "disable", mrb_esp32_bluedroid_disable, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, mrb_esp32_bluedroid, "init", mrb_esp32_bluedroid_init, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, mrb_esp32_bluedroid, "deinit", mrb_esp32_bluedroid_deinit, MRB_ARGS_NONE());
-
-  /* esp_bluedroid_status_t */
-  mrb_define_const(mrb, mrb_esp32_bluedroid, "STATUS_UNINITIALIZED", mrb_fixnum_value(ESP_BLUEDROID_STATUS_UNINITIALIZED));
-  mrb_define_const(mrb, mrb_esp32_bluedroid, "STATUS_INITIALIZED", mrb_fixnum_value(ESP_BLUEDROID_STATUS_INITIALIZED));
-  mrb_define_const(mrb, mrb_esp32_bluedroid, "STATUS_ENABLED", mrb_fixnum_value(ESP_BLUEDROID_STATUS_ENABLED));
+  mrb_esp_bt_main_init(mrb, mrb_esp32_bluedroid);
 
   // esp_bt.h
 
