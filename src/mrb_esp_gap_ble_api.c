@@ -129,6 +129,8 @@ static mrb_value mrb_esp32_gap_s_register_callback(mrb_state *mrb, mrb_value sel
 void mrb_esp_gap_ble_api_init(mrb_state *mrb, struct RClass *mrb_esp32_ble, struct RClass *mrb_esp32_ble_gap) {
   mrb_esp32_bluetooth_mrb = mrb;
 
+  esp_ble_gap_register_callback(mrb_esp32_gap_callback);
+
   mrb_define_class_method(mrb, mrb_esp32_ble_gap, "register_callback", mrb_esp32_gap_s_register_callback, MRB_ARGS_BLOCK());
 
   /* esp_ble_gap_cb_param_t */
