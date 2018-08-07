@@ -111,7 +111,7 @@ void mrb_esp32_gap_callback(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t
   }
 
   mrb_value callback_param = mrb_obj_value(mrb_data_object_alloc(mrb, callback_param_klass, (void *)param, &mrb_esp32_ble_gap_cb_param_type));
-  mrb_funcall(mrb, gap_callback_block, "call", 2, mrb_fixnum_value(event), callback_param);
+  mrb_funcall(mrb, gap_callback_block, "call", 1, callback_param);
 
   return;
 }
