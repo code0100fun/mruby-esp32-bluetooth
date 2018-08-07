@@ -250,8 +250,8 @@ void mrb_esp_gap_ble_api_init(mrb_state *mrb, struct RClass *mrb_esp32, struct R
   /* esp_ble_adv_filter_t */
   mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY));
   mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_WLST_CON_ANY", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_WLST_CON_ANY));
-  mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY));
-  mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY));
+  mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_ANY_CON_WLST", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_ANY_CON_WLST));
+  mrb_define_const(mrb, mrb_esp32, "ADV_FILTER_ALLOW_SCAN_WLST_CON_WLST", mrb_fixnum_value(ADV_FILTER_ALLOW_SCAN_WLST_CON_WLST));
 
   /* esp_ble_sec_act_t */
   mrb_define_const(mrb, mrb_esp32, "ESP_BLE_SEC_ENCRYPT", mrb_fixnum_value(ESP_BLE_SEC_ENCRYPT));
