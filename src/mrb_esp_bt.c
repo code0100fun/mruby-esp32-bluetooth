@@ -297,41 +297,41 @@ void mrb_esp_bt_init(mrb_state *mrb, struct RClass *mrb_esp32, struct RClass *mr
   mrb_define_method(mrb, mrb_esp32_bt_controller_config, "initialize", mrb_esp32_bt_controller_config_init, MRB_ARGS_REQ(4));
 
   /* esp_bt_mode_t */
-  mrb_define_const(mrb, mrb_esp32_bt, "MODE_IDLE", mrb_fixnum_value(ESP_BT_MODE_IDLE));
-  mrb_define_const(mrb, mrb_esp32_bt, "MODE_BLE", mrb_fixnum_value(ESP_BT_MODE_BLE));
-  mrb_define_const(mrb, mrb_esp32_bt, "MODE_CLASSIC_BT", mrb_fixnum_value(ESP_BT_MODE_CLASSIC_BT));
-  mrb_define_const(mrb, mrb_esp32_bt, "MODE_BTDM", mrb_fixnum_value(ESP_BT_MODE_BTDM));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_MODE_IDLE", mrb_fixnum_value(ESP_BT_MODE_IDLE));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_MODE_BLE", mrb_fixnum_value(ESP_BT_MODE_BLE));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_MODE_CLASSIC_BT", mrb_fixnum_value(ESP_BT_MODE_CLASSIC_BT));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_MODE_BTDM", mrb_fixnum_value(ESP_BT_MODE_BTDM));
 
   /* esp_bt_controller_status_t */
-  mrb_define_const(mrb, mrb_esp32_bt, "CONTROLLER_STATUS_IDLE", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_IDLE));
-  mrb_define_const(mrb, mrb_esp32_bt, "CONTROLLER_STATUS_INITED", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_INITED));
-  mrb_define_const(mrb, mrb_esp32_bt, "CONTROLLER_STATUS_ENABLED", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_ENABLED));
-  mrb_define_const(mrb, mrb_esp32_bt, "CONTROLLER_STATUS_NUM", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_NUM));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_CONTROLLER_STATUS_IDLE", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_IDLE));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_CONTROLLER_STATUS_INITED", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_INITED));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_CONTROLLER_STATUS_ENABLED", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_ENABLED));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BT_CONTROLLER_STATUS_NUM", mrb_fixnum_value(ESP_BT_CONTROLLER_STATUS_NUM));
 
   /* esp_ble_power_type_t */
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL0", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL0));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL1", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL1));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL2", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL2));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL3", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL3));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL4", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL4));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL5", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL5));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL6", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL6));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL7", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL7));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_CONN_HDL8", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL8));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_ADV", mrb_fixnum_value(ESP_BLE_PWR_TYPE_ADV));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_SCAN", mrb_fixnum_value(ESP_BLE_PWR_TYPE_SCAN));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_DEFAULT", mrb_fixnum_value(ESP_BLE_PWR_TYPE_DEFAULT));
-  mrb_define_const(mrb, mrb_esp32_ble, "PWR_TYPE_NUM", mrb_fixnum_value(ESP_BLE_PWR_TYPE_NUM));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL0", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL0));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL1", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL1));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL2", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL2));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL3", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL3));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL4", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL4));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL5", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL5));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL6", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL6));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL7", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL7));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_CONN_HDL8", mrb_fixnum_value(ESP_BLE_PWR_TYPE_CONN_HDL8));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_ADV", mrb_fixnum_value(ESP_BLE_PWR_TYPE_ADV));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_SCAN", mrb_fixnum_value(ESP_BLE_PWR_TYPE_SCAN));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_DEFAULT", mrb_fixnum_value(ESP_BLE_PWR_TYPE_DEFAULT));
+  mrb_define_const(mrb, mrb_esp32, "ESP_BLE_PWR_TYPE_NUM", mrb_fixnum_value(ESP_BLE_PWR_TYPE_NUM));
 
   /* esp_power_level_t */
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_N14", mrb_fixnum_value(ESP_PWR_LVL_N14));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_N11", mrb_fixnum_value(ESP_PWR_LVL_N11));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_N8", mrb_fixnum_value(ESP_PWR_LVL_N8));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_N5", mrb_fixnum_value(ESP_PWR_LVL_N5));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_N2", mrb_fixnum_value(ESP_PWR_LVL_N2));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_P1", mrb_fixnum_value(ESP_PWR_LVL_P1));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_P4", mrb_fixnum_value(ESP_PWR_LVL_P4));
-  mrb_define_const(mrb, mrb_esp32, "PWR_LVL_P7", mrb_fixnum_value(ESP_PWR_LVL_P7));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_N14", mrb_fixnum_value(ESP_PWR_LVL_N14));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_N11", mrb_fixnum_value(ESP_PWR_LVL_N11));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_N8", mrb_fixnum_value(ESP_PWR_LVL_N8));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_N5", mrb_fixnum_value(ESP_PWR_LVL_N5));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_N2", mrb_fixnum_value(ESP_PWR_LVL_N2));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_P1", mrb_fixnum_value(ESP_PWR_LVL_P1));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_P4", mrb_fixnum_value(ESP_PWR_LVL_P4));
+  mrb_define_const(mrb, mrb_esp32, "ESP_PWR_LVL_P7", mrb_fixnum_value(ESP_PWR_LVL_P7));
 
   /* macros */
   mrb_value init_config_default = mrb_obj_value(mrb_data_object_alloc(mrb, mrb_esp32_bt_controller_config, NULL, &mrb_esp32_bt_controller_config_type));
