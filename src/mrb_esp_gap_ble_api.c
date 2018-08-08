@@ -3,6 +3,9 @@
 #include <mruby/data.h>
 #include <mruby-esp32-ext_esp_err.h>
 
+void mrb_esp_gap_cb_param_init(mrb_state *mrb, struct RClass *mrb_esp32_ble_gap);
+
+
 static mrb_state *mrb_esp32_bluetooth_mrb;
 static mrb_value gap_callback_block;
 
@@ -10,7 +13,7 @@ void mrb_esp32_ble_gap_cb_free(mrb_state *mrb, void *param) {
   // TODO
 }
 
-static const struct mrb_data_type mrb_esp32_ble_gap_cb_param_type = {
+const struct mrb_data_type mrb_esp32_ble_gap_cb_param_type = {
   "esp_ble_gap_cb_param_t", mrb_esp32_ble_gap_cb_free
 };
 
@@ -155,6 +158,8 @@ void mrb_esp_gap_ble_api_init(mrb_state *mrb, struct RClass *mrb_esp32, struct R
   mrb_define_class_under(mrb, mrb_esp32_ble_gap, "ScanRspDataRawCmpl", mrb->object_class);
   mrb_define_class_under(mrb, mrb_esp32_ble_gap, "AdvStartCmpl", mrb->object_class);
   mrb_define_class_under(mrb, mrb_esp32_ble_gap, "ScanStartCmpl", mrb->object_class);
+
+  mrb_esp_gap_cb_param_init(mrb, mrb_esp32_ble_gap);
 
   // esp_ble_sec_t
   mrb_define_class_under(mrb, mrb_esp32_ble_gap, "SecKeyNotif", mrb->object_class);
