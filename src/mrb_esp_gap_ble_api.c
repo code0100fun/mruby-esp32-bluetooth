@@ -126,12 +126,25 @@ static mrb_value mrb_esp32_gap_s_register_callback(mrb_state *mrb, mrb_value sel
   return mrb_nil_value();
 }
 
+static mrb_value mrb_esp32_gap_s_start_scanning(mrb_state *mrb, mrb_value self) {
+  mrb_int duration;
+  mrb_get_args(mrb, "i", &duration);
+
+  esp_err_t err = esp_ble_gap_start_scanning((uint32_t)duration);
+  if (err != ESP_OK) {
+    mrb_raise_esp32_err(mrb, err);
+  }
+
+  return mrb_nil_value();
+}
+
 void mrb_esp_gap_ble_api_init(mrb_state *mrb, struct RClass *mrb_esp32, struct RClass *mrb_esp32_ble, struct RClass *mrb_esp32_ble_gap) {
   mrb_esp32_bluetooth_mrb = mrb;
 
   esp_ble_gap_register_callback(mrb_esp32_gap_callback);
 
   mrb_define_class_method(mrb, mrb_esp32_ble_gap, "register_callback", mrb_esp32_gap_s_register_callback, MRB_ARGS_BLOCK());
+  mrb_define_class_method(mrb, mrb_esp32_ble_gap, "start_scanning", mrb_esp32_gap_s_start_scanning, MRB_ARGS_REQ(1));
 
   /* esp_ble_gap_cb_param_t */
   mrb_define_class_under(mrb, mrb_esp32_ble_gap, "AdvDataCmpl", mrb->object_class);
