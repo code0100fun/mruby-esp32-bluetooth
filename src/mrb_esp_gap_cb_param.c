@@ -24,6 +24,16 @@ static mrb_value mrb_esp32_scan_rst_adv_data_len(mrb_state *mrb, mrb_value self)
   return mrb_fixnum_value(param->scan_rst.adv_data_len);
 }
 
+static mrb_value mrb_esp32_scan_rst_adv_name(mrb_state *mrb, mrb_value self) {
+  esp_ble_gap_cb_param_t *param = (esp_ble_gap_cb_param_t *)mrb_data_get_ptr(mrb, self, &mrb_esp32_ble_gap_cb_param_type);
+  uint8_t adv_name_len = 0;
+  uint8_t *adv_name = esp_ble_resolve_adv_data(param->scan_rst.ble_adv, ESP_BLE_AD_TYPE_NAME_CMPL, &adv_name_len);
+  if (adv_name == NULL) {
+    return mrb_nil_value();
+  }
+  return mrb_str_new_static(mrb, (char *)adv_name, adv_name_len);
+}
+
 static mrb_value mrb_esp32_scan_rst_bda(mrb_state *mrb, mrb_value self) {
   esp_ble_gap_cb_param_t *param = (esp_ble_gap_cb_param_t *)mrb_data_get_ptr(mrb, self, &mrb_esp32_ble_gap_cb_param_type);
   uint8_t *bda = param->scan_rst.bda;
@@ -47,6 +57,7 @@ static void scan_start_cmpl_init(mrb_state *mrb, struct RClass *scan_start_cmpl)
 
 static void scan_rst_init(mrb_state *mrb, struct RClass *scan_rst) {
   mrb_define_method(mrb, scan_rst, "adv_data_len", mrb_esp32_scan_rst_adv_data_len, MRB_ARGS_NONE());
+  mrb_define_method(mrb, scan_rst, "adv_name", mrb_esp32_scan_rst_adv_name, MRB_ARGS_NONE());
   mrb_define_method(mrb, scan_rst, "bda", mrb_esp32_scan_rst_bda, MRB_ARGS_NONE());
   mrb_define_method(mrb, scan_rst, "scan_rsp_len", mrb_esp32_scan_rst_scan_rsp_len, MRB_ARGS_NONE());
   mrb_define_method(mrb, scan_rst, "search_evt", mrb_esp32_scan_rst_search_evt, MRB_ARGS_NONE());
